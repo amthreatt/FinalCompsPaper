@@ -1,0 +1,200 @@
+\documentclass[10pt,twocolumn]{article} 
+
+\usepackage{oxycomps} % use the main oxycomps style file
+\usepackage[]{algorithm2e}
+
+\bibliography{references}
+
+\pdfinfo{
+    /Title (COMPS Proposal)
+    /Author (Justin Li)
+}
+
+\title{Automated Math Tutor}
+
+\author{Amelia Threatt}
+\affiliation{Occidental College}
+\email{athreatt@oxy.edu}
+
+\begin{document}
+\newtheorem{proof}{Proof}
+
+\maketitle
+\section{Introduction}
+For the Comprehensive requirement for the Computer Science Major, I have decided to construct my own automated online math tutoring machine. The math tutoring machine will be a website designed to take in single variable algebraic equations and provide the user with guided prompts to help students solve for a variable, while simultaneously checking their work at each step. Assistive technology (AT) has been used to help students with learning disabilities, by providing a helpful learning tool that can be utilized in the classroom and out of the classroom. The difference between my website and typical assistive technology is my website will be designed for anyone who needs additional math help whereas assistive technology is marketed towards and designed specifically for students with learning disabilities. 
+
+
+\section{Problem Context}
+Every year California Public School and Charter School students, third to eighth grade and eleventh grade, take a standardized test. This test covers English language arts and mathematics. Of those two subjects, they get broken down into a few categories to create a well-rounded exam to assess how well the students are learning new material accurately. These test results have continually shown that students perform better in English language arts instead of Mathematics. This noticeable trend brought common core math teaching to California schools; however, this disparity in test results still stands. \cite{noauthor_california_nodate}
+ 
+There are several reasons why a student may struggle with math; many other learning differences can attribute struggles with math, such as dyscalculia, dysgraphia, dyslexia, visual processing disorders, or add/ADHD much more that were not mentioned \cite{noauthor_why_nodate}. Along with those previously mentioned learning differences, math anxiety is an issue some students can suffer from without having a learning difference attached to it. Essentially everyone who struggles with math struggles differently from the next person. However, there are identifiable fundamentals where the challenges lie.  
+ 
+Many different teaching techniques have been designed to best help students in and outside of class with the education of math and other subjects. One way of teaching is a sort of the modified Orton Gillingham (OG)methodology adapted for mathematics teaching and a focus of evidence-based instruction. Orton and Gillingham were researchers who focused on reading struggles, and language processing disorders, along with dyslexia, they together created a set of teaching principles. The Orton-Gillingham approach is a “direct, explicit, multisensory, structured, sequential, diagnostic, and perspective way to teach literacy when reading, writing, and spelling” \cite{ahearn_what_2016}. The Orton-Gillingham method was designed for reading and writing; however, educators have begun implementing this approach into maths teaching. In math teaching the methodology starts by creating concrete examples for students so creating more hands-on examples when teaching, and then finally converting what they have learned into math symbols and numbers. Essentially the OG approach in math does use the multisensory aspect with the concrete examples, but along with that the teaching is data-driven, it will implement direct connections between previous material and new material, and immediate feedback \cite{noauthor_why_nodate}. Along with the OG methodology, there is evidence-based math teaching that has been helping develop the way math is taught. Evidence-based math has four main focuses: explicit instruction, visual representation, schema-based instruction, and peer interaction \cite{noauthor_evidence-based_nodate}. The aspect of evidence-based teaching that can be applied to virtual tutoring will be explicit instruction which is a way of making the learning process very clear; this helps students not have to guess what to do as often. Breaking down a problem into clear and identifiable steps can be helpful for students who cannot retain everything at once. As well as the evidence-based instruction a website provides the option to also implement visual representations as well. 
+Online tutoring is not new, especially due to the pandemic there has been a lot of services that have transferred online. With most typical online tutoring services, there is a cost attached, but with that being said you are provided with live one on one tutoring. However, the price of these services recessed the accessibility to math education aids, although a website is not a person have access to a free and comprehensive response to a student input can be helpful when a one on one tutor is not an option. 
+ 
+With all that said, the main points of math education I want to bring to this website are structured and sequential aspects from OG, along with the immediate feedback, and having clear and identifiable prompts for the student to help guide to the next step in an algebraic problem. But most importantly what I have taken from my research will be the visual aspects of the website. Typing math symbols into a computer have not always been so easy, but websites like Wolfram alpha have made great efforts to make mathematical user input much easier. 
+
+
+
+
+\section{Technical Background}
+This project implents a high understanding of the laws of mathematics, and the rules that must be obeyed for a logical computations, and the importance of the properties of various data structures. The implementation of the rules of mathematics go hand and hand with the functionality of binary, and expression trees. The algorithm was coded around the various rules of mathematics, such as PEMDAS, Associative property of addition, subtraction, multiplication, and division, Valid mathematical equations, and lastly the difference between a mathematical equation and expression. 
+
+
+An expression tree is a binary tree, in which the root of two nodes is the operation combining it, such as $+, -, *, /$. The construction of an expression tree is from when the inorder traversal of the tree returns the infix notation of the expression, and the post order traversal results in the postfix notation of the expression \cite{noauthor_expression_2015}. Infix and Postfix are two different ways of writing the same expression. Infix is the one most people are familiar with, essentially the expression is written the way it would normally be read. Postfix however is written where the operator is after the operands, postfix notation of an expression takes into account the precedence of certain operations about others. This concept of precedence comes from a familiar topic PEMDAS which is an acronym for parenthesis, exponents, multiplication, division, addition, and subtraction. With postix notation the expression can be evaluated as expected but if there were parenthesis in the original expression they are no longer there, however the infix and postix notation are logically equivalent. Although expression trees are namely used for expressions, simply accounting for the $=$ in the stack for converting for post order will fix that and thus make an equation tree.  
+
+
+This algorithm is used to solve equations, so its important to have a strong understanding of what an equation is, and what makes it valid. Firstly an equation is made up of two expressions connected by an equal sign \cite{noauthor_algebra_nodate}. An expression is numbers, variables, or a combination of both along with operation symbols. An example of an equation in infix notation is $5*x + 2 = 9$, as simple as it may seem this equation had a number of rules to follow it make it logical. 
+\begin{enumerate}
+    \item An equation must have $=$ or else it is an expression and there is no solving for a variable for an expression
+    \item Each operand must have an operation next to it, meaning there should not be two operations next to each other
+    \item There should always be an operation or $=$ on the left of an open parenthesis "(" and never an operation directly the the right of it. 
+    \item There should always be an operation of $=$ on the right of a closing parenthesis ")", and never an operation directly to the left of it
+    \item If parenthesis are present there should be an even number of them
+\end{enumerate}
+
+
+No with a data structure that accurately represents an equation to the computer, and the requirement for a valid equation there are some mathematical laws to take into account into the algorithm. The algorithm solves the equation by moving as many operands to the other side from the variable side with each move. Preformed by interpreting the inverse of operations. Specific cases the algorithm had to take into account were $p-x$ or $p/x$ where $p$ is any operand, and $x$ is the variable. This is due to the commutativity laws of division and subtraction. First consider subtraction.
+\begin{proof}
+    
+    Let p and q be some operand, and x some variable to be solved for. 
+    
+    Suppose  $$q = p-x$$
+   $$q \neq x-p$$
+    $$q-p = -x$$
+    $$ -(q - p ) = x$$
+\end{proof}
+ Next has a similar issues with commutativity that is considered in the algorithm.  
+\begin{proof}
+    
+    Let p and q be some operand, and x some variable to be solved for. 
+    
+    Suppose  $$q = \frac{p}{x} \not\Rightarrow q = \frac{x}{p} $$
+    $$\frac{q}{p} = \frac{1}{x} \Rightarrow \frac{1}{\frac{q}{p}} = x$$
+
+\end{proof}
+
+In all using a modified expression tree to represent a valid equation, and with knowledge of  commutative laws of certain operations, the algorithm was made. 
+\section{Prior Work}
+Many online calculators provide step by step solutions to a problem however a difference between mine and other websites is my step by step solution will be user-inspired. Essentially the user will be writing out the step by step solution themselves. The new website however will be checking to see if the steps attempted are correct, along with that if a step is incorrect then the website will also provide guiding prompts to help get the student back on track towards the correct solution. 
+
+With that being said, the other online calculators are helpful in showing what are helpful design elements and approaches towards creating this website. For example, Wolfram Alpha is not only capable of complicated computations it also has a clean design and an understandable interface. Another important online calculator that has been a big inspiration for my website is https://www.integral-calculator.com/. 
+
+Aside from online calculators, there exists a Math Robot tutor that does provide real-time feedback for the student as well as providing why an answer is correct or not. This math robot is called ABii, along with the fully autonomous physical robot body it also has a comprehensive online math teaching program along side with it. A qualm with the ABii is  the price tag, the price of the ABii k-5 School Edition+ is $1499.00$. Although this robot can be a very useful teaching tool, this price makes it inaccessible to lower-income students or schools. 
+
+Even with Wolfram Alpha to get access to the premium website has a monthly cost. Adding fees to these websites and tools automatically reduces the accessibility to education tools. As mentioned, math education is still developing. The implementation of new math tools can help with that development, but realistically only if those tools are accessible to all types of students. 
+
+Now as for automated online math tutoring machines, I have found one that uses machine learning to really lean into the personalized teaching information. The website will attempt to become an intelligent tutoring system. An intelligent tutoring system have been made before, the definition for an intelligent tutoring system is a computer system that provides personalized and immediate feedback for a student.  
+
+Aside from physical automated tutoring systems, the programs behind them all vary. There are many different ways to make a "math solver" which is a large component of a tutoring systems, seeing as you can't necessarily help a students without knowing a solution to a problem. Creating a solver can be done using expression trees, implementing regular language functions, machine learning, using another program to do the math and then creating a method for outputting the solution. However of all of these the most adaptable to the user is the data structure approach, hence why it is the more commonly referenced to programmers when creating their own equation solvers. 
+
+%there is so much more that can go here 
+\section{Methods}
+%is it useful
+This project first began with the question of is this useful, why should this program be made. The beginning of the project was a extensive literature review on the importance of mathematical tools, and accessibility around them. At this point before beginning I began specialists interviews, to see what aspect of the program would be useful, and what the design for others should look like. To become familiar with what aspects of tutoring and teaching are most useful for a student. I chose to take on the role as an in person tutor for more middle school students. Allowing me to get a more in person understanding of the types of questions students have outside of the class. 
+
+%what is something useful I could make
+After conducting research on useful teaching techniques, what kind of program would be useful with and within my skill set. I was able to see that the most effective tutoring tool I could make was one that help students with one specific topic, rather than teach everyone everything. In this portion of my methods I was focused on narrowing the scope of my project to actually be something producible in the given time. Although this meant I wouldn't be making the most perfect math teaching tool possible, it still meant I would be able to make another accessible math teaching tool which in the long run can be equally as beneficial.
+
+%what am I making
+At this point I've decided to make a program for math tutoring, and I would have it focus in one one area. That now meant two things, how will I make the tutoring program and what would be the area of focus. From my lit review on previous works I learned that a mutable and common way to go about making a equation solver algorithm was to use expression trees. With the way I went about manipulating the expression tree I found myself putting a large focus on choosing the right operands to moves, and inverting the correct operations to an effective step in solving the equation. So I chose to make the focus of the tutoring system on understanding what inverting operations can do to help a student solve an equation. With the choice of how to program the tutoring system and what I would focus my program on helping with I was left with who will get to use this program.
+
+%who can use it
+ Now with an understanding of how this project can be made, and the functionality I have the capacity to provide I was able to narrow down who this tool could be used buy.To allow for a focus on a smooth running algorithm I have chosen to let this be a tool that runs in terminal. With that being said the number of people who can have access to it will be greatly reduced. However some people is better than no people, so the solving an interactive program is designed to be utilized in terminal. With this decision the design aspect of this project was restricted to the display abilities terminal possesses.
+ 
+%how will I make it
+To build this solver machine learning could have been used or, preexisting equation solver such as the algebraic solver from Matlab or Wolfram, the solver could have been done using brute force. However none of those would have been mutable enough. Machine learning would have easily been able to produce an answer, however intercepting the intermediate steps would have been an additional step. Using a preexisting program would have been able to provide an answer and possibly the intermediate steps, but in order for me to make this an interactive tool I would have to understand how another software's programs worked. Which wouldn't have been an issue if the programs were open source. Again brute force could have given an answer but that its, no intermediate steps, and also not even an exact answer, there will always be some margin of error for the solution. Also brute force would limit the student to strictly numeric expression with a singular variable. From my research I could learned there was no way to expect what a student might input, and it would be foolish to only expect numbers and one variable. The only way I could create something that could take in any invalid input and help the student would be if I made my own solver, that would solve the equation focusing on the subject I want to help the students with the most. 
+
+\begin{algorithm}[H]
+ \KwData{Valid Equation}
+ \KwResult{Solved Equation}
+\While{Variable is not the only element on either side of the equal sign}{
+ \eIf{variable to be solved for is in the right sub tree of the node right of the equal sign}{move the left sub tree of the node right of the equal sign using inverse operation, to the left of the equal sign}{Move the appropriate sub tree according to the inverse operation, and its respective communitive laws}
+ }
+ \caption{Solving equations using Expression Tree}
+\end{algorithm}
+
+In all that is the general outline of the algorithm for solving the equation, but the next question is how can I make this an interactive program for the student. According to the Orton-Gillingham methodology, it is important to provide clear and explicit instructions for the students, while still involving them in the solving process. From personal experience in tutoring I found an importance on providing positive feedback, and guidance rather than directly telling the answer to a question. So the interactive portion of this program relies on asking the user to input what the inverse of certain operations is, while the program offers them an explanation as to how the inverse operation is used. 
+
+To do this I drafted the script, for the program as if I were writing a sort of play. For what the program should output depending on the various inputs it could get from a user. From there that script was then implemented into the program. Thus making a program that can run and is ready for user input. 
+%What will make it useful 
+
+What will makes this a useful program is if it can offer clarity on the topic of inverse operations and using them to solve equations. As mentioned the program was scripted the with the Orton-Gililingham methodology in mind. However since this is a tool that runs in terminal there are great limitations in making a tool that is accessible to students with learning disabilities, and simply students without the capacity to run a program in terminal. Being able to explore the different styles of teaching and learning to design an ideal tool for a student who needs more direct help with math. The scripting process was of great importance as I had to work on finding verbiage that was understandable to students at this level of mathematics. Looking at versions of the California Standardized Tests in the mathematics section offered insight on the types of question that were being asked, which is help guide the script for taking input in from the student. Then to get an understanding of the script to use when providing help I implemented a lot of the useful teaching techniques I gather from tutoring students at this level of math. In all what makes this a useful tool is the real world inspiration for input, and the experience guided output for advice on this topic. 
+
+
+
+%now that I've made it, is it useful 
+With it made, and able to take in user input, I conducted my own set of tests to find any bugs before moving on to user testing. With a program that is supposed to be able to take in any input, a lot of testing has to go in to see if it can achieve that. I outlined all the different types of equation I should be able to solve. Such as instances of if the variable to solve for is on the left or the right of the equal sign, then the program should be able to adapt to that. Next is if the variable is on the right of left of an operation, despite how versatile trees are, math is not as flexible. At this point of functionality testing I ran through a series of test equation that should succeed, and other that should fail to test all possible edge cases that would be inputted into the program.  
+
+%how to take feedback and fix a project
+Lastly finalize this program, I initially I wanted to test how helpful it was, so I drafted my set of questions for user testing. Conducted a round of testing, and then went on to use that feedback to edit some of the verbiage the program outputs. Despite having drafted the script around a series of research, and experience the feedback was an important step in creating a program that was understandable to the user.
+\section{Evaluation Metrics}
+
+This project is combined of many different components making the evaluation of it rather extensive, and although I had been evaluating at each steps of the method I would now have to evaluate the overall functionality of the website. To evaluate the website I will need to check for three things, does the website work, is it usable and does the website succeed in its goal. The website works if it steers the student in the direction of the correct answer as opposed to simply proving the step by step. In doing so the website should be able to identify where a student made a mistake and then provide help getting it to the correct answer. To test this aspect I will use curate a set of equations that push the edge cases of the program. 
+
+Then to test the helpfulness of the website among students I will provide a set of 5 equations, and a feedback form on the performance of the program. The student is to complete the set of equations using the program, despite perhaps knowing how to do them without the program. This is important to see if the program itself is easy to use for students. To have a program that works is one thing but the intention of the program is to help students with problems, so I want to know if the instructions are clear, if the guidance is helpful or annoying, if the student makes a mistake does the program help them or increase frustration. To gauge this the students are given equation that also test the edge cases of the program, and then a feedback form using a scale from helpful, to not helpful, with a neutral option in the middle. I chose this form of feedback because this was the question I wanted answered, was the program helpful. This same form also had questions of confusion, and lastly a portion where they could provide their own feedback on the matter. 
+
+Next to test the mutability of the program I have an option for inputting your own equation into the program to see how it would be solved. First by providing a set of equation it gives the user a chance to become more familiar with how the program works, and the sort of rules an equation to be inputted should follow. 
+
+Since this program was designed to be ran in terminal the testing aspect is slightly altered. Seeing as many people are not familiar with terminal, and how to get a java program running on their computer. So until I could create a clear set of instructions for a person with no terminal experience I would have people run the program on my computer and preform the user testing that way. Or I would set up a zoom call, share my screen, mute my microphone, and turn off my camera. I would instruct the user to input what the would into the program, and I would directly copy and past it in. This aspect of accessibility definitely had an effect on the user testing, however it will be accounted for in the  results, and discussion section.
+
+Next to see if the website is usable there are some key functionality items that need to be addressed. Such as can the website take in a mathematical input? Next can it recognize and problem it can solve, or a problem it cannot solve? Lastly does it provide the helpful guidance and is the math on the website readable? To check if my website can take in a mathematical problem I will be test inputting problems I know it can solve and problems I know it cannot solve. It should provide a response to the problems it cannot solve the student knows that this website unfortunately cannot help them with their problem. Testing the usefulness of the websites guiding questions will be tested more so in the question of did the app succeed in its goal. After providing the students with problem set to not only test their knowledge but also test the efficacy of the website I will also provide a set of qualitative questions to gauge the usefulness of the website for a student.
+
+In all I will mainly be evaluating user experience, functionality of the program. These are two complicated focus' with results that can greatly impact the outcome of the program. This resulting in hopefully a user experience driven program. 
+\section{Results and Discussion}
+% the stated metrics are used and the results explained with respecct to the methods 
+As explained I wanted to test the functionality, the helpfulness, and other general user input to create the user driven program. While evaluating the functionality and experience of the user I kept in mind the goals of creating a accessible, math teaching tool. This aspect of my goals became an addition metric of evaluation while receiving my feedback. 
+
+Firstly accessibility, it was very important to me to create a tool that was accessible. To be accessible meant that a user could easily reach the program, and be able to use it at any point in time. As conducting my user testing a a piece of the feedback in regards to if there was anything the user would want changed, was how to reach the program. What I learned is firstly no everyone has expereince running java in their terminal and even with guidance some people do not have the capacity to learn how to use terminal when simply desiring help with math homework for example. Also, there were instances where the user wouldn't have java or an IDE. So if both of those were not an option I would guide the user to an online Java IDE, and help them access the program from there. Nonetheless this process proved to be challenging for some users, and was defiantly noted in the feedback form. Leading me to come to the consensus that this program is not yet accessible to everyone, it is only accessible to people who are familiar with running a Java program.
+
+To have a helpful program it must work, to test if it works I worked on testing all possible edge cases which I was able to get to work. But then to further testing the functionality I gave those same questions to the user to test so that there would be no biased input while testing an edge case. There were times where the program would fail, which helped me work out some final bugs in the program. Thus resulting is a functional solver.  
+
+Next to understand the helpfulness I made it an entire set of questions in the feedback form. What I gathered from my users was that they all found the program to be helpful in solving equations. Some users even went as far to say that it was more helpful than other preexisting math help tools such as Wolfram Alpha. 
+
+With helpfulness comes a program that was not confusing. The feedback I received shared that the instructions were easy to understand, and the commands were simple to follow. This feedback led me to believe that I have succeeded in creating a helpful online teaching tool. With the help of the Orton-Gillingham methodology which strongly influenced the verbiage, and maintained a focus of clear and concise instructions. I was able to create something easy to follow. Where there aren't many user interface elements I could change to help clue in on what elements to focus on I was left with constructing clear verbiage for the user which I believe I have succeeded in. 
+
+Another goal of mine was to have this program be more than an equation solver, or a simple step by step explanation. From my user feedback I was able to hear that the guidance I provided within the program was positive, and boosted moral, along with actually cultivating the feeling of being helped by a friendly real tutor. 
+
+In all the results of my user tester has gone to show that this program was helpful in tutoring. Provided kind and encouraging feedback to help motivate the user. The instructions were clear and helped prevent any possible confusion. Lastly there is work to be done on making a more accessible program however adding in the option of an online Java compiler should help mitigate this issue. For more information on the raw data collected refer to the references section of \href{https://github.com/amthreatt/COMPS2022}{Computer Science Comprehensive requirement Fall 2022 git hub repository}.
+% explain metrics, and the results gathered from them
+
+%alternate explinations and caveats to the results are explored
+
+%the results are connected ot the goals of the project
+\section{Ethical Consideration}
+ In the construction of an automated online math tutoring machine, there are ways to address some ethical concerns however it is not possible to provide a solution to all concerns on the one website. This is because when addressing one learning disability the implications could be negative for a different learning disability. Other than learning disabilities educational websites are not optimal for accessibility, given the scope of this website only being able to solve algebraic problems this tool will concentrate the power to a small group of math students. 
+
+Intelligent tutoring systems can be helpful in increasing the accessibility of tutoring to more people, especially if the website is free which mine will be. The website being free will remove any financial burden that may come with hiring a tutor. Utilizing the web platform will also allow the student to access the information and help at any time, and from anywhere which may be helpful for students with mobility issues. Although these systems can be helpful to some it does come with some pitfalls of being unable to provide everyone with everything they need for the website to be most successful. 
+
+There are instances where an online intelligent tutoring system is not going to be beneficial for some students, due to various accessibility issues, cognitive and learning disorders, and physical impairments. At this point and time not everyone has access to the internet, and even if they do not everyone is knowledgeable about the internet and how some devices work. Websites inherently are not completely accessible.
+
+Due to the lack of accessibility within the internet, the website will be monopolizing power to people who have access to the internet which is not an equally diverse group of people. Along with that the website will be most easily accessible to those with computer literacy and are able to navigate the website from a compatible device. 
+
+In an attempt to create a fully ethical website the I should take into account all forms of where accessibility will be challenged and create a solution, however, a solution for one problem could create an entirely new problem for another people. To an extent the accessibility features can be user-customized but at what point will all forms of inaccessibility be challenged begging the question of technological solutionism. At the end of the day, in-person tutors came first, intelligent tutoring systems came afterward, if there a way to design a website full capable of the personalization an in-person tutor could provide?
+
+Aside from the ethics behind the purpose of the website there are other aspects of ethical considerations to take into account, such as if websites can be ethically made. Well there have been papers and books published on the matter. The web development community is seen making efforts to identify where web apps could be ethically improved. The main places where my web app could be improved is in the accessibility aspect, in regards to addressing the needs of various disabilities, and then also will internet accessibility for young students. The target audience of the website is an age group who doesn't have the ability to provide their own technology, so they depend on their guardians and the schools to provide them. However, there are socioeconomic factors at play that do not make this an accessible resource for all students. Not being able to guarantee lower-income students access to this website simply due to the fact that they do not have access to technology is only aiding more in the power divide between them and other students who d have the ability to access the internet. Yet the only way to assuage the inequity would be to regulate who gets to use the website and who does not, and arguably there is no ethical way to choose which students should get access to a free public website ethically.  
+
+
+
+
+\begin{comment}
+No definition citations, unless the term itself is in dispute
+Separate problem background from technical background
+    Unclear if games and apps require much technical background
+    The general structure of the framework might be better suited for the Architecture Overview section
+        Eg. Flask uses decorators to associate functions with URLs
+        Eg. Unity has scripts associated with objects and specific triggers, such as walking into an area, pressing a button, etc.
+    Maybe a better name is "algorithmic background"?
+        Should explore what does and doesn't count
+            All ML counts
+            App and game frameworks do not
+        Framework vs. library?
+            I like the idea of [inversion of control](https://martinfowler.com/bliki/InversionOfControl.html), but that may be too abstract for students to understand
+        Heuristic: is understanding that system necessary to understand the results?
+            Ie. How Flask or Unity works doesn't influence whether the app/game is useful/fun/engaging
+            But how (say) linear regression works is highly relevant for why the results match/don't match the actual values
+\end{comment}
+
+\printbibliography 
+
+\end{document}
